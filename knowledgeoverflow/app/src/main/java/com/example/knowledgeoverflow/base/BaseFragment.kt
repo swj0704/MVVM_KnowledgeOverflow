@@ -55,4 +55,3 @@ abstract class BaseFragment<VB: ViewDataBinding, VM : BaseViewModel> : Fragment(
         return R.layout::class.java.getField(name.toString()).getInt(R.layout::class.java)
     }
 }
-}
