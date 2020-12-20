@@ -1,12 +1,11 @@
 package com.example.knowledgeoverflow.view
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import androidx.lifecycle.ViewModel
+import android.os.Handler
 import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseActivity
 import com.example.knowledgeoverflow.databinding.ActivitySplashBinding
 import com.example.knowledgeoverflow.viewmodel.SplashViewModel
+import com.example.knowledgeoverflow.widget.extention.startActivityWithFinish
 
 class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
     override val resource: Int
@@ -14,16 +13,14 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
     override val viewModel: SplashViewModel
         get() = SplashViewModel()
 
-    override fun initStartView() {
-        TODO("Not yet implemented")
-    }
+    override fun initStartView() {}
 
-    override fun initDataBinding() {
-        TODO("Not yet implemented")
-    }
+    override fun initDataBinding() {}
 
     override fun initAfterBinding() {
-        TODO("Not yet implemented")
+        Handler().postDelayed({
+ //           startActivityWithFinish(this@SplashActivity, MainActivity::class.java)
+        }, 3000)
     }
 
 
