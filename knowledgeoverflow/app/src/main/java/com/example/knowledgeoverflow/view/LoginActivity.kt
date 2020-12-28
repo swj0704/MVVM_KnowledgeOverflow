@@ -6,6 +6,8 @@ import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseActivity
 import com.example.knowledgeoverflow.databinding.ActivityLoginBinding
 import com.example.knowledgeoverflow.viewmodel.LoginViewModel
+import org.koin.android.ext.android.inject
+import retrofit2.Retrofit
 
 class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     override val resource: Int
@@ -14,16 +16,12 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     override val viewModel: LoginViewModel
         get() = LoginViewModel()
 
-    override fun initStartView() {
-        TODO("Not yet implemented")
-    }
+    override fun initStartView() {}
 
-    override fun initDataBinding() {
-        TODO("Not yet implemented")
-    }
+    override fun initDataBinding() {}
 
     override fun initAfterBinding() {
-        TODO("Not yet implemented")
+
     }
 
 
