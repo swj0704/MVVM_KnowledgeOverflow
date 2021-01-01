@@ -2,45 +2,56 @@ package com.example.knowledgeoverflow.base
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.example.knowledgeoverflow.R
+import com.example.knowledgeoverflow.BR
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
+import java.util.*
 
 abstract class BaseActivity <VM : BaseViewModel, VB : ViewDataBinding> : AppCompatActivity(){
 
     abstract val resource : Int
     lateinit var binding: VB
-
     abstract val viewModel : VM
 
-    /**
-     * 레이아웃을 띄운 직후 호출.
-     * 뷰나 액티비티의 속성 등을 초기화.
-     * ex) 리사이클러뷰, 툴바, 드로어뷰..
-     */
-    abstract fun initStartView()
 
-    /**
-     * 두번째로 호출.
-     * 데이터 바인딩 및 rxjava 설정.
-     * ex) rxjava observe, databinding observe..
-     */
-    abstract fun initDataBinding()
+    protected abstract fun init()
+    protected abstract fun observerViewModel()
 
-    /**
-     * 바인딩 이후에 할 일을 여기에 구현.
-     * 그 외에 설정할 것이 있으면 이곳에서 설정.
-     * 클릭 리스너도 이곳에서 설정.
-     */
-    abstract fun initAfterBinding()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        performDataBinding()
+        observerViewModel()
+        init()
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    private fun performDataBinding(){
+        binding = DataBindingUtil.setContentView(this, layoutRes())
+        binding.setVariable(BR.viewModel, viewModel)
+        binding.lifecycleOwner = this
+        binding.executePendingBindings()
+    }
 
-        binding = DataBindingUtil.setContentView(this, resource)
+    @LayoutRes
+    private fun layoutRes() : Int{
+        val split = ((Objects.requireNonNull<Type>(javaClass.genericSuperclass) as ParameterizedType).actualTypeArguments[0] as Class<*>)
+                .simpleName.replace("Binding$".toRegex(), "")
+                .split("(?<=.)(?=\\p{Upper})".toRegex())
+                .dropLastWhile { it.isEmpty() }.toTypedArray()
 
-        initStartView()
-        initDataBinding()
-        initAfterBinding()
+        val name = StringBuilder()
+        for (i in split.indices) {
+            name.append(split[i].toLowerCase(Locale.ROOT))
+            if (i != split.size - 1) name.append("_")
+        }
+        return R.layout::class.java.getField(name.toString()).getInt(R.layout::class.java)
+    }
+
+    override fun onBackPressed() {
+        this.finish()
     }
 }
