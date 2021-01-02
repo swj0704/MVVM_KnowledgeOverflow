@@ -19,24 +19,20 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override val viewModel: MainViewModel
         get() = MainViewModel()
 
-    override fun initStartView() {
+    override fun init() {
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
-                setOf(
-                        R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-                )
+            setOf(
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+            )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
     }
 
-    override fun initDataBinding() {
-        TODO("Not yet implemented")
-    }
-
-    override fun initAfterBinding() {
+    override fun observerViewModel() {
         TODO("Not yet implemented")
     }
 

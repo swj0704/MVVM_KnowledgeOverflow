@@ -13,13 +13,13 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
     override val viewModel: SplashViewModel
         get() = SplashViewModel()
 
-    override fun initStartView() {}
+    override fun init() {
 
-    override fun initDataBinding() {}
+    }
 
-    override fun initAfterBinding() {
+    override fun observerViewModel() {
         Handler().postDelayed({
- //           startActivityWithFinish(this@SplashActivity, MainActivity::class.java)
+            //           startActivityWithFinish(this@SplashActivity, MainActivity::class.java)
         }, 3000)
     }
 
