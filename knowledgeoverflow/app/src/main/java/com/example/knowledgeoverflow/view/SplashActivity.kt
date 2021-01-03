@@ -1,6 +1,7 @@
 package com.example.knowledgeoverflow.view
 
 import android.os.Handler
+import androidx.lifecycle.Observer
 import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseActivity
 import com.example.knowledgeoverflow.databinding.ActivitySplashBinding
@@ -18,9 +19,15 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
     }
 
     override fun observerViewModel() {
-        Handler().postDelayed({
-            //           startActivityWithFinish(this@SplashActivity, MainActivity::class.java)
-        }, 3000)
+        val handler = Handler()
+        var runnable : Runnable
+
+        with(viewModel){
+            onSuccessEvent.observe(this@SplashActivity, {
+                runnable = Runnable { startActivityWithFinish(applicationContext, MainActivity::class.java) }
+                handler.postDelayed(runnable, 2000)
+            })
+        }
     }
 
 
