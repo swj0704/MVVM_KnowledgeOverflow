@@ -1,6 +1,6 @@
 package com.example.knowledgeoverflow.network
 
-import com.example.client.api.DTO.*
+import com.example.knowledgeoverflow.DTO.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
