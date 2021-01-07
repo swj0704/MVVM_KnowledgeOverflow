@@ -2,6 +2,7 @@ package com.example.knowledgeoverflow.di
 
 import com.example.knowledgeoverflow.network.*
 import com.example.knowledgeoverflow.viewmodel.*
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -31,7 +32,7 @@ val myModule = module{
         service.create(ModifyAPI::class.java)
     }
 
-    viewModel { SplashViewModel() }
+    viewModel { SplashViewModel(androidApplication()) }
     viewModel { HomeViewModel() }
     viewModel { MainViewModel() }
     viewModel { SlideshowViewModel() }
