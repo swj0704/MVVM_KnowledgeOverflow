@@ -9,12 +9,13 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-val service: Retrofit = Retrofit.Builder()
-    .baseUrl("")
-    .addConverterFactory(GsonConverterFactory.create())
-    .build()
-
 val myModule = module{
+
+    val service: Retrofit = Retrofit.Builder()
+        .baseUrl("https://def3c747ac93.ngrok.io/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
 
     single {
         service.create(CheckAPI::class.java)
@@ -36,6 +37,6 @@ val myModule = module{
     viewModel { HomeViewModel() }
     viewModel { MainViewModel() }
     viewModel { SlideshowViewModel() }
-    viewModel { LoginViewModel(get()) }
+    viewModel { LoginViewModel(get<GetAPI>()) }
     viewModel { SettingViewModel() }
 }

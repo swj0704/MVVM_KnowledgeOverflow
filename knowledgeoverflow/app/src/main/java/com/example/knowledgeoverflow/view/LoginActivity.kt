@@ -1,5 +1,6 @@
 package com.example.knowledgeoverflow.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.knowledgeoverflow.R
@@ -21,12 +22,20 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     override val viewModel: LoginViewModel
         get() = LoginViewModel(service)
 
-    override fun init() {
-        TODO("Not yet implemented")
-    }
+    override fun init() {}
 
     override fun observerViewModel() {
-        TODO("Not yet implemented")
+        with(viewModel){
+            onLoginEvent.observe(this@LoginActivity, {
+
+            })
+            onFailEvent.observe(this@LoginActivity, {
+                
+            })
+            onSignUpEvent.observe(this@LoginActivity, {
+                startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
+            })
+        }
     }
 
 

@@ -39,6 +39,7 @@
                 android:id="@+id/IDText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:text="@={viewModel.email}"
                 android:hint="아이디 또는 이메일"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,6 +61,7 @@
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:text="@={viewModel.password}"
                 android:hint="비밀번호"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,6 +74,7 @@
             android:textColor="#ffffff"
             android:textSize="18dp"
             app:cornerRadius="10dp"
+            android:onClick="@={() -> viewModel.checkLogin()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +87,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+            android:onClick="@={() -> viewModel.goSignUp()}"
             android:background="#00ff0000"
             android:textColor="#000064"
             android:textSize="14dp"
