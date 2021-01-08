@@ -13,7 +13,7 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
     override val resource: Int
         get() = R.layout.activity_splash
     override val viewModel: SplashViewModel
-        get() = SplashViewModel(applicationContext)
+        get() = SplashViewModel(this@SplashActivity)
 
     override fun init() {
 
@@ -34,6 +34,7 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
                 runnable = Runnable {
                     startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                 }
+                handler.postDelayed(runnable, 2000)
             })
         }
     }
