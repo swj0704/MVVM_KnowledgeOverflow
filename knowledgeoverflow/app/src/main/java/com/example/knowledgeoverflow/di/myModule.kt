@@ -1,12 +1,12 @@
 package com.example.knowledgeoverflow.di
 
+import android.content.Context
 import com.example.knowledgeoverflow.network.*
 import com.example.knowledgeoverflow.viewmodel.*
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 val myModule = module{
@@ -37,6 +37,7 @@ val myModule = module{
     viewModel { HomeViewModel() }
     viewModel { MainViewModel() }
     viewModel { SlideshowViewModel() }
-    viewModel { LoginViewModel(get<GetAPI>()) }
+    viewModel { LoginViewModel(get<GetAPI>(), get<Context>()) }
     viewModel { SettingViewModel() }
+    viewModel { SignUpViewModel(get<GetAPI>(), get<AddAPI>()) }
 }
