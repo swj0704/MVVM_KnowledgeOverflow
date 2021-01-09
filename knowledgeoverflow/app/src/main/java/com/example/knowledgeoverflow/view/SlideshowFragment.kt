@@ -14,6 +14,9 @@ import com.example.knowledgeoverflow.databinding.FragmentSlideshowBinding
 import com.example.knowledgeoverflow.viewmodel.SlideshowViewModel
 
 class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewModel>() {
+    override val resource: Int
+        get() = R.layout.fragment_slideshow
+
     override val viewModel: SlideshowViewModel
         get() = SlideshowViewModel()
 

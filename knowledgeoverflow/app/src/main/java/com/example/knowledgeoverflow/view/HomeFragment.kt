@@ -14,6 +14,8 @@ import com.example.knowledgeoverflow.databinding.FragmentHomeBinding
 import com.example.knowledgeoverflow.viewmodel.HomeViewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
+    override val resource: Int
+        get() = R.layout.fragment_home
     override val viewModel: HomeViewModel
         get() = HomeViewModel()
 

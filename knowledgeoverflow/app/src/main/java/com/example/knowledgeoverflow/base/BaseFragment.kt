@@ -18,12 +18,14 @@ abstract class BaseFragment<VB: ViewDataBinding, VM : BaseViewModel> : Fragment(
     protected lateinit var binding : VB
     protected abstract val viewModel : VM
 
+    protected abstract val resource : Int
+
     protected abstract fun init()
     protected abstract fun observerViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        binding = DataBindingUtil.inflate(inflater, layoutRes(), container, false)
+        binding = DataBindingUtil.inflate(inflater, resource, container, false)
         return binding.root
     }
 
@@ -38,20 +40,5 @@ abstract class BaseFragment<VB: ViewDataBinding, VM : BaseViewModel> : Fragment(
         binding.setVariable(BR.viewModel, viewModel)
         binding.lifecycleOwner = this
         binding.executePendingBindings()
-    }
-
-    @LayoutRes
-    private fun layoutRes() : Int{
-        val split = ((Objects.requireNonNull<Type>(javaClass.genericSuperclass) as ParameterizedType).actualTypeArguments[0] as Class<*>)
-            .simpleName.replace("Binding$".toRegex(), "")
-            .split("(?<=.)(?=\\p{Upper})".toRegex())
-            .dropLastWhile { it.isEmpty() }.toTypedArray()
-
-        val name = StringBuilder()
-        for (i in split.indices) {
-            name.append(split[i].toLowerCase(Locale.ROOT))
-            if (i != split.size - 1) name.append("_")
-        }
-        return R.layout::class.java.getField(name.toString()).getInt(R.layout::class.java)
     }
 }
