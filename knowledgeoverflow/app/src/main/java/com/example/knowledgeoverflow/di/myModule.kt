@@ -2,6 +2,7 @@ package com.example.knowledgeoverflow.di
 
 import android.content.Context
 import com.example.knowledgeoverflow.network.*
+import com.example.knowledgeoverflow.network.api.*
 import com.example.knowledgeoverflow.viewmodel.*
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -39,5 +40,5 @@ val myModule = module{
     viewModel { SlideshowViewModel() }
     viewModel { LoginViewModel(get<GetAPI>(), get<Context>()) }
     viewModel { SettingViewModel() }
-    viewModel { SignUpViewModel(get<GetAPI>(), get<AddAPI>()) }
+    viewModel { SignUpViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
 }

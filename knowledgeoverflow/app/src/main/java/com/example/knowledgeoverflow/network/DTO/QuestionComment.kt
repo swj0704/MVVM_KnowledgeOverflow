@@ -1,6 +1,6 @@
-package com.example.knowledgeoverflow.DTO
+package com.example.knowledgeoverflow.network.DTO
 
-data class AnswerResponse(
+data class QuestionComment(
     val id : Int,
     val question_id : Int,
     val owner_id : Int,

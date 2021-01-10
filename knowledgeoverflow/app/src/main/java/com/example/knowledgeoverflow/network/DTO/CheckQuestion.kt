@@ -1,4 +1,4 @@
-package com.example.knowledgeoverflow.DTO
+package com.example.knowledgeoverflow.network.DTO
 
 import com.google.gson.annotations.SerializedName
 

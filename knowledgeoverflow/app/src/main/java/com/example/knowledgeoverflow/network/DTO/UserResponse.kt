@@ -1,4 +1,4 @@
-package com.example.knowledgeoverflow.DTO
+package com.example.knowledgeoverflow.network.DTO
 
 class UserResponse(
     val id : Int,

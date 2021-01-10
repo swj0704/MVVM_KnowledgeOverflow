@@ -1,7 +1,7 @@
-package com.example.knowledgeoverflow.network
+package com.example.knowledgeoverflow.network.api
 
-import com.example.knowledgeoverflow.DTO.CheckQuestion
-import com.example.knowledgeoverflow.DTO.GetResponse
+import com.example.knowledgeoverflow.network.DTO.CheckQuestion
+import com.example.knowledgeoverflow.network.DTO.GetResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
