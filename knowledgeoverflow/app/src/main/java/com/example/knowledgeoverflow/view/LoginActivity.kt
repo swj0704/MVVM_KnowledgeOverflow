@@ -7,7 +7,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseActivity
 import com.example.knowledgeoverflow.databinding.ActivityLoginBinding
-import com.example.knowledgeoverflow.network.GetAPI
+import com.example.knowledgeoverflow.network.api.GetAPI
 import com.example.knowledgeoverflow.viewmodel.LoginViewModel
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
@@ -27,7 +27,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
     override fun observerViewModel() {
         with(viewModel){
-            onLoginEvent.observe(this@LoginActivity, {
+            onSuccessEvent.observe(this@LoginActivity, {
                 val dialog = SweetAlertDialog(this@LoginActivity, SweetAlertDialog.SUCCESS_TYPE)
 
                 dialog.setCancelable(false)
