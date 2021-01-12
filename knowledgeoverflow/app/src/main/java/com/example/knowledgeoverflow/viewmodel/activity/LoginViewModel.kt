@@ -1,4 +1,4 @@
-package com.example.knowledgeoverflow.viewmodel
+package com.example.knowledgeoverflow.viewmodel.activity
 
 import android.content.Context
 import android.graphics.Color

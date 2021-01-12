@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.knowledgeoverflow.viewmodel.SettingViewModel" />
+            type="com.example.knowledgeoverflow.viewmodel.fragment.SettingViewModel" />
     </data>
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#E5E5E5"
-        tools:context=".view.SettingFragment">
+        tools:context=".view.fragment.SettingFragment">
 
         <LinearLayout
             android:id="@+id/btn_change_nickname_setting"

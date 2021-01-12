@@ -1,17 +1,13 @@
-package com.example.knowledgeoverflow.view
+package com.example.knowledgeoverflow.view.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseActivity
 import com.example.knowledgeoverflow.databinding.ActivityLoginBinding
 import com.example.knowledgeoverflow.network.api.GetAPI
-import com.example.knowledgeoverflow.viewmodel.LoginViewModel
+import com.example.knowledgeoverflow.viewmodel.activity.LoginViewModel
 import org.koin.android.ext.android.get
-import org.koin.android.ext.android.inject
-import retrofit2.Retrofit
 
 class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.knowledgeoverflow.viewmodel.MainViewModel" />
+            type="com.example.knowledgeoverflow.viewmodel.activity.MainViewModel" />
     </data>
 
     <LinearLayout

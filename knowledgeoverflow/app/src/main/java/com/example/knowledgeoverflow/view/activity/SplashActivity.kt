@@ -1,13 +1,11 @@
-package com.example.knowledgeoverflow.view
+package com.example.knowledgeoverflow.view.activity
 
 import android.content.Intent
 import android.os.Handler
-import androidx.lifecycle.Observer
 import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseActivity
 import com.example.knowledgeoverflow.databinding.ActivitySplashBinding
-import com.example.knowledgeoverflow.viewmodel.SplashViewModel
-import com.example.knowledgeoverflow.widget.extention.startActivityWithFinish
+import com.example.knowledgeoverflow.viewmodel.activity.SplashViewModel
 
 class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
     override val resource: Int

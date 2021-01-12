@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.knowledgeoverflow.view.HomeFragment"
+        android:name="com.example.knowledgeoverflow.view.fragment.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_slideshow"
-        android:name="com.example.knowledgeoverflow.view.SlideshowFragment"
+        android:name="com.example.knowledgeoverflow.view.fragment.SlideshowFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/navigation_setting"
-        android:name="com.example.knowledgeoverflow.view.SettingFragment"
+        android:name="com.example.knowledgeoverflow.view.fragment.SettingFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_setting" />
 </navigation>

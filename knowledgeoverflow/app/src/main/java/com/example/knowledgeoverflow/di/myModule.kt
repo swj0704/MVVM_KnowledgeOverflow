@@ -1,9 +1,14 @@
 package com.example.knowledgeoverflow.di
 
 import android.content.Context
-import com.example.knowledgeoverflow.network.*
 import com.example.knowledgeoverflow.network.api.*
-import com.example.knowledgeoverflow.viewmodel.*
+import com.example.knowledgeoverflow.viewmodel.activity.LoginViewModel
+import com.example.knowledgeoverflow.viewmodel.activity.MainViewModel
+import com.example.knowledgeoverflow.viewmodel.activity.SignUpViewModel
+import com.example.knowledgeoverflow.viewmodel.activity.SplashViewModel
+import com.example.knowledgeoverflow.viewmodel.fragment.HomeViewModel
+import com.example.knowledgeoverflow.viewmodel.fragment.SettingViewModel
+import com.example.knowledgeoverflow.viewmodel.fragment.SlideshowViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.knowledgeoverflow.viewmodel.SignUpViewModel" />
+            type="com.example.knowledgeoverflow.viewmodel.activity.SignUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +12,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.SignUpActivity">
+        tools:context=".view.activity.SignUpActivity">
 
         <ImageView
             android:id="@+id/imglogo"

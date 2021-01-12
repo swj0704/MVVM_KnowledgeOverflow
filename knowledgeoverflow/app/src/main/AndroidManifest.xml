@@ -15,13 +15,13 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.SignUpActivity"
+            android:name=".view.activity.SignUpActivity"
             android:theme="@style/Material" />
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".view.activity.LoginActivity"
             android:theme="@style/Material" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -32,7 +32,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".view.SplashActivity">
+        <activity android:name=".view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

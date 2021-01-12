@@ -1,11 +1,7 @@
-package com.example.knowledgeoverflow.view
+package com.example.knowledgeoverflow.view.activity
 
-import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -14,7 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseActivity
 import com.example.knowledgeoverflow.databinding.ActivityMainBinding
-import com.example.knowledgeoverflow.viewmodel.MainViewModel
+import com.example.knowledgeoverflow.viewmodel.activity.MainViewModel
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 

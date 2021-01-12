@@ -1,4 +1,4 @@
-package com.example.knowledgeoverflow.viewmodel
+package com.example.knowledgeoverflow.viewmodel.activity
 
 import androidx.lifecycle.MutableLiveData
 import com.example.knowledgeoverflow.network.DTO.GetResponse
@@ -20,9 +20,8 @@ class SignUpViewModel(private val getAPI: GetAPI, private val addAPI: AddAPI, pr
     val password = MutableLiveData<String>()
     val passwordCheck = MutableLiveData<String>()
     val onNickNameDuplicateEvent = SingleLiveEvent<Unit>()
-    val onNotNickNameDuplicateEvent = SingleLiveEvent<Unit>()
     val onNickNameSwearEvent = SingleLiveEvent<Unit>()
-    val onNotNickNameSwearEvent = SingleLiveEvent<Unit>()
+    val onCheckNickname = SingleLiveEvent<Unit>()
     val onEmailDuplicateEvent = SingleLiveEvent<Unit>()
     val onNotEmailDuplicateEvent = SingleLiveEvent<Unit>()
     val onNotPasswordDuplicateEvent = SingleLiveEvent<Unit>()
@@ -73,7 +72,7 @@ class SignUpViewModel(private val getAPI: GetAPI, private val addAPI: AddAPI, pr
                                     onNickNameSwearEvent.call()
                                 } else {
                                     isSwearNickname = false
-                                    onNotNickNameSwearEvent.call()
+                                    onCheckNickname.call()
                                 }
                             }
 

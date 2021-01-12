@@ -9,22 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.RelativeLayout
-import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.BR
 import com.example.knowledgeoverflow.widget.SingleLiveEvent
-import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
-import java.util.*
 
 abstract class BaseDialog <VB : ViewDataBinding, VM : BaseViewModel> : DialogFragment() {
 
     private lateinit var binding : VB
     protected abstract val viewModel : VM
+    protected abstract val resource : Int
 
     protected abstract fun init()
     protected abstract fun observerViewModel()
@@ -32,7 +28,7 @@ abstract class BaseDialog <VB : ViewDataBinding, VM : BaseViewModel> : DialogFra
     val dialogCloseEvent = SingleLiveEvent<Unit>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, layoutRes(), container, false)
+        binding = DataBindingUtil.inflate(inflater, resource, container, false)
         return binding.root
     }
 
@@ -87,18 +83,5 @@ abstract class BaseDialog <VB : ViewDataBinding, VM : BaseViewModel> : DialogFra
         binding.unbind()
     }
 
-    @LayoutRes
-    private fun layoutRes() : Int{
-        val split = ((Objects.requireNonNull<Type>(javaClass.genericSuperclass) as ParameterizedType).actualTypeArguments[0] as Class<*>)
-            .simpleName.replace("Binding$".toRegex(), "")
-            .split("(?<=.)(?=\\p{Upper})".toRegex())
-            .dropLastWhile { it.isEmpty() }.toTypedArray()
 
-        val name = StringBuilder()
-        for (i in split.indices) {
-            name.append(split[i].toLowerCase(Locale.ROOT))
-            if (i != split.size - 1) name.append("_")
-        }
-        return R.layout::class.java.getField(name.toString()).getInt(R.layout::class.java)
-    }
 }

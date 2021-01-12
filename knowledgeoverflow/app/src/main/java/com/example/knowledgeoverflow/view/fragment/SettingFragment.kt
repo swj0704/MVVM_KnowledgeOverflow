@@ -1,9 +1,9 @@
-package com.example.knowledgeoverflow.view
+package com.example.knowledgeoverflow.view.fragment
 
 import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseFragment
 import com.example.knowledgeoverflow.databinding.FragmentSettingBinding
-import com.example.knowledgeoverflow.viewmodel.SettingViewModel
+import com.example.knowledgeoverflow.viewmodel.fragment.SettingViewModel
 
 class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>() {
     override val resource: Int
