@@ -43,7 +43,7 @@ class LoginViewModel(private val service: GetAPI, private val context: Context) 
 
                 override fun onFailure(call: Call<GetResponse<UserResponse>>, t: Throwable) {
                     Log.d("Fail Login", t.toString())
-                    onFailEvent.call()
+                    onErrorEvent.call()
                 }
 
             })

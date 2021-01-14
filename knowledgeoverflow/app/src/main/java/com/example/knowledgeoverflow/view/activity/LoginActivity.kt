@@ -28,7 +28,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
                 dialog.setCancelable(false)
 
-                dialog.setTitleText("로그인이 완료 되었습니다")
+                dialog.setTitleText("로그인이 완료되었습니다")
                     .setConfirmClickListener {
                         dialog.dismiss()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
@@ -42,7 +42,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
                 dialog.setCancelable(false)
 
-                dialog.setTitleText("로그인이 실패 하였습니다")
+                dialog.setTitleText("로그인이 실패하였습니다")
                     .setConfirmClickListener {
                         dialog.dismiss()
                     }
@@ -50,6 +50,17 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             })
             onSignUpEvent.observe(this@LoginActivity, {
                 startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
+            })
+            onErrorEvent.observe(this@LoginActivity, {
+                val dialog = SweetAlertDialog(this@LoginActivity, SweetAlertDialog.ERROR_TYPE)
+
+                dialog.setCancelable(false)
+
+                dialog.setTitleText("오류가 발생하였습니다")
+                    .setConfirmClickListener {
+                        dialog.dismiss()
+                    }
+                    .show()
             })
         }
     }
