@@ -1,5 +1,7 @@
 package com.example.knowledgeoverflow.viewmodel.activity
 
+import android.text.TextWatcher
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.knowledgeoverflow.network.DTO.GetResponse
 import com.example.knowledgeoverflow.network.DTO.UserResponse
@@ -15,16 +17,17 @@ import retrofit2.Response
 
 
 class SignUpViewModel(private val getAPI: GetAPI, private val addAPI: AddAPI, private val checkAPI: CheckAPI) : BaseViewModel() {
+    val onSuccessEvent = SingleLiveEvent<Unit>()
+    val onFailEvent = SingleLiveEvent<Unit>()
+    val onErrorEvent = SingleLiveEvent<Unit>()
     val nickname = MutableLiveData<String>()
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
-    val passwordCheck = MutableLiveData<String>()
     val onNickNameDuplicateEvent = SingleLiveEvent<Unit>()
     val onNickNameSwearEvent = SingleLiveEvent<Unit>()
     val onCheckNickname = SingleLiveEvent<Unit>()
     val onEmailDuplicateEvent = SingleLiveEvent<Unit>()
     val onNotEmailDuplicateEvent = SingleLiveEvent<Unit>()
-    val onNotPasswordDuplicateEvent = SingleLiveEvent<Unit>()
     var isDuplicateNickname : Boolean = true
     var isSwearNickname : Boolean = true
     var isDuplicateEmail : Boolean = true
@@ -36,6 +39,7 @@ class SignUpViewModel(private val getAPI: GetAPI, private val addAPI: AddAPI, pr
                         call: Call<GetResponse<UserResponse>>,
                         response: Response<GetResponse<UserResponse>>
                 ) {
+                    Log.d("STATUS", response.body()!!.status.toString())
                     isDuplicateEmail = if (response.body()!!.status == 200) {
                         onEmailDuplicateEvent.call()
                         true
@@ -60,6 +64,7 @@ class SignUpViewModel(private val getAPI: GetAPI, private val addAPI: AddAPI, pr
                         call: Call<GetResponse<UserResponse>>,
                         response: Response<GetResponse<UserResponse>>
                 ) {
+                    Log.d("STATUS", response.body()!!.status.toString())
                     if (response.body()!!.status == 200) {
                         onNickNameDuplicateEvent.call()
                         isDuplicateNickname = true
@@ -97,28 +102,25 @@ class SignUpViewModel(private val getAPI: GetAPI, private val addAPI: AddAPI, pr
             onFailEvent.call()
         } else {
             if(password.value != null) {
-                if (password.value == passwordCheck.value) {
-                    addAPI.addUser(email = email.value!!, name = nickname.value!!, password = password.value!!)
-                        .enqueue(object : Callback<Status> {
-                            override fun onResponse(
-                                call: Call<Status>,
-                                response: Response<Status>
-                            ) {
-                                if(response.body()!!.status == 200){
-                                    onSuccessEvent.call()
-                                } else {
-                                    onFailEvent.call()
-                                }
+                addAPI.addUser(email = email.value!!, name = nickname.value!!, password = password.value!!)
+                    .enqueue(object : Callback<Status> {
+                        override fun onResponse(
+                            call: Call<Status>,
+                            response: Response<Status>
+                        ) {
+                            if(response.body()!!.status == 200){
+                                onSuccessEvent.call()
+                            } else {
+                                onFailEvent.call()
                             }
+                        }
 
-                            override fun onFailure(call: Call<Status>, t: Throwable) {
-                                onErrorEvent.call()
-                            }
+                        override fun onFailure(call: Call<Status>, t: Throwable) {
+                            onErrorEvent.call()
+                        }
 
-                        })
-                } else {
-                    onNotPasswordDuplicateEvent.call()
-                }
+                    })
+
             } else {
                 onFailEvent.call()
             }

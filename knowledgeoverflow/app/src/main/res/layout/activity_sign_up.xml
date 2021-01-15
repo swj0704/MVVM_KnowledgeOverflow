@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -7,9 +9,7 @@
             type="com.example.knowledgeoverflow.viewmodel.activity.SignUpViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.activity.SignUpActivity">
@@ -40,8 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="아이디 또는 이메일"
-                android:text="@={viewModel.email}"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:text="@={viewModel.email}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -49,7 +49,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="265dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +59,8 @@
                 android:id="@+id/signUpName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@={viewModel.nickname}"
-                android:hint="닉네임" />
+                android:hint="닉네임"
+                android:text="@={viewModel.nickname}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -68,7 +68,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="265dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             app:counterEnabled="true"
             app:counterMaxLength="12"
             app:endIconMode="password_toggle"
@@ -82,32 +82,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="비밀번호"
-                android:text="@={viewModel.password}"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="@={viewModel.password}" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/checkPwdLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="265dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signUpPasswordLayout"
-            app:endIconMode="password_toggle"
-            app:errorEnabled="true"
-            app:counterEnabled="true"
-            app:counterMaxLength="12">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/checkPwd"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="비밀번호 확인"
-                android:text="@={viewModel.passwordCheck}"
-                android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -116,23 +93,23 @@
             android:layout_height="50dp"
             android:layout_marginTop="40dp"
             android:backgroundTint="#000064"
+            android:onClick="@{() -> viewModel.signUp()}"
             android:text="회원가입"
             android:textColor="#ffffff"
-            android:onClick="@{() -> viewModel.signUp()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkPwdLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpPasswordLayout" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/checkDuplicateId"
             android:layout_width="81dp"
             android:layout_height="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:background="#000064"
+            android:onClick="@{() -> viewModel.checkEmail()}"
             android:text="중복 확인"
             android:textColor="#ffffff"
-            android:onClick="@{() -> viewModel.checkEmail()}"
             android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.9"
@@ -143,11 +120,11 @@
             android:id="@+id/checkDuplicateNickName"
             android:layout_width="81dp"
             android:layout_height="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:background="#000064"
+            android:onClick="@{() -> viewModel.checkNickName()}"
             android:text="중복 확인"
             android:textColor="#ffffff"
-            android:onClick="@{() -> viewModel.checkNickName()}"
             android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.9"
