@@ -6,12 +6,13 @@ import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseActivity
 import com.example.knowledgeoverflow.databinding.ActivitySplashBinding
 import com.example.knowledgeoverflow.viewmodel.activity.SplashViewModel
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
     override val resource: Int
         get() = R.layout.activity_splash
     override val viewModel: SplashViewModel
-        get() = SplashViewModel(this@SplashActivity)
+        get() = getViewModel(SplashViewModel::class)
 
     override fun init() {
 

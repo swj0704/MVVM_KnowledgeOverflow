@@ -4,20 +4,21 @@ import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseFragment
 import com.example.knowledgeoverflow.databinding.FragmentSettingBinding
 import com.example.knowledgeoverflow.viewmodel.fragment.SettingViewModel
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>() {
     override val resource: Int
         get() = R.layout.fragment_setting
 
     override val viewModel: SettingViewModel
-        get() = SettingViewModel()
+        get() = getViewModel(SettingViewModel::class)
 
     override fun init() {
-        TODO("Not yet implemented")
+
     }
 
     override fun observerViewModel() {
-        TODO("Not yet implemented")
+
     }
 
 
