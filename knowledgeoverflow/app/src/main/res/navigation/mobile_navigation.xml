@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.knowledgeoverflow.view.fragment.HomeFragment"
-        android:label="@string/title_home"
+        android:label="내 정보"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_slideshow"
         android:name="com.example.knowledgeoverflow.view.fragment.SlideshowFragment"
-        android:label="@string/title_dashboard"
+        android:label="질문"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/navigation_setting"
         android:name="com.example.knowledgeoverflow.view.fragment.SettingFragment"
-        android:label="@string/title_notifications"
+        android:label="설정"
         tools:layout="@layout/fragment_setting" />
 </navigation>
