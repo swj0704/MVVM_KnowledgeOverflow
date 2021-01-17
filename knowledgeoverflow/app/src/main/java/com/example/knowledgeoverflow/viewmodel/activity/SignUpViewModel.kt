@@ -32,6 +32,9 @@ class SignUpViewModel(private val getAPI: GetAPI, private val addAPI: AddAPI, pr
     var isSwearNickname : Boolean = true
     var isDuplicateEmail : Boolean = true
 
+    var checkEmailCount = 0
+    var checkNicknameCount = 0
+
     fun checkEmail(){
         if(checkText(email.value)) {
             getAPI.getUser(email = email.value).enqueue(object : Callback<GetResponse<UserResponse>> {
@@ -40,6 +43,7 @@ class SignUpViewModel(private val getAPI: GetAPI, private val addAPI: AddAPI, pr
                         response: Response<GetResponse<UserResponse>>
                 ) {
                     Log.d("STATUS", response.body()!!.status.toString())
+                    checkEmailCount++
                     isDuplicateEmail = if (response.body()!!.status == 200) {
                         onEmailDuplicateEvent.call()
                         true
@@ -64,6 +68,7 @@ class SignUpViewModel(private val getAPI: GetAPI, private val addAPI: AddAPI, pr
                         call: Call<GetResponse<UserResponse>>,
                         response: Response<GetResponse<UserResponse>>
                 ) {
+                    checkNicknameCount++
                     Log.d("STATUS", response.body()!!.status.toString())
                     if (response.body()!!.status == 200) {
                         onNickNameDuplicateEvent.call()
@@ -99,6 +104,8 @@ class SignUpViewModel(private val getAPI: GetAPI, private val addAPI: AddAPI, pr
 
     fun signUp(){
         if(isDuplicateEmail || isDuplicateNickname){
+            onFailEvent.call()
+        } else if(checkEmailCount == 0 || checkNicknameCount == 0) {
             onFailEvent.call()
         } else {
             if(password.value != null) {
