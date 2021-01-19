@@ -18,7 +18,11 @@ class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewMo
     }
 
     override fun observerViewModel() {
-
+        with(viewModel){
+            goWriteQuestionEvent.observe(this@SlideshowFragment, {
+                // 질문 적는 곳으로 이동!
+            })
+        }
     }
 
 
