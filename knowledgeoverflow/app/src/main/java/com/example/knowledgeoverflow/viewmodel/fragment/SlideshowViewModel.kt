@@ -1,5 +1,6 @@
 package com.example.knowledgeoverflow.viewmodel.fragment
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,18 +13,23 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SlideshowViewModel(private val service: GetAPI) : BaseViewModel() {
+class SlideshowViewModel(private val service: GetAPI, context: Context) : BaseViewModel() {
+    val mContext = context
 
     val goWriteQuestionEvent = SingleLiveEvent<Unit>()
     val onErrorEvent = SingleLiveEvent<Unit>()
 
-    val questionList = MutableLiveData<ArrayList<QuestionResponse>>()
+    var questionList = ArrayList<QuestionResponse>()
 
-    fun getList(){
-        service.getQuestion().enqueue(object : Callback<GetResponse<QuestionResponse>>{
+    init {
+        getList("상식")
+    }
+
+    fun getList(theme : String?){
+        service.getQuestion(theme = theme).enqueue(object : Callback<GetResponse<QuestionResponse>>{
             override fun onResponse(call: Call<GetResponse<QuestionResponse>>, response: Response<GetResponse<QuestionResponse>>) {
                 if(response.body()!!.status == 200){
-                    questionList.value = response.body()!!.result
+                    questionList = response.body()!!.result
                 }
             }
 
@@ -33,12 +39,11 @@ class SlideshowViewModel(private val service: GetAPI) : BaseViewModel() {
 
         })
     }
-
-    fun getList(theme : String?){
-        service.getQuestion(theme = theme).enqueue(object : Callback<GetResponse<QuestionResponse>>{
+    fun getList(theme: String?, text : String?){
+        service.getQuestion(theme = theme, title = text).enqueue(object : Callback<GetResponse<QuestionResponse>>{
             override fun onResponse(call: Call<GetResponse<QuestionResponse>>, response: Response<GetResponse<QuestionResponse>>) {
                 if(response.body()!!.status == 200){
-                    questionList.value = response.body()!!.result
+                    questionList = response.body()!!.result
                 }
             }
 
