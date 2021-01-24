@@ -51,6 +51,9 @@ class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewMo
             goWriteQuestionEvent.observe(this@SlideshowFragment, {
                 // 질문 적는 곳으로 이동!
             })
+            onChangeListEvent.observe(this@SlideshowFragment, {
+                // 리스트 변경
+            })
         }
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

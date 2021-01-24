@@ -20,6 +20,7 @@ class SlideshowViewModel(private val service: GetAPI, context: Context) : BaseVi
     val onErrorEvent = SingleLiveEvent<Unit>()
 
     var questionList = ArrayList<QuestionResponse>()
+    val onChangeListEvent = SingleLiveEvent<Unit>()
 
     init {
         getList("상식")
@@ -29,6 +30,7 @@ class SlideshowViewModel(private val service: GetAPI, context: Context) : BaseVi
         service.getQuestion(theme = theme).enqueue(object : Callback<GetResponse<QuestionResponse>>{
             override fun onResponse(call: Call<GetResponse<QuestionResponse>>, response: Response<GetResponse<QuestionResponse>>) {
                 if(response.body()!!.status == 200){
+                    onChangeListEvent.call()
                     questionList = response.body()!!.result
                 }
             }
@@ -43,6 +45,7 @@ class SlideshowViewModel(private val service: GetAPI, context: Context) : BaseVi
         service.getQuestion(theme = theme, title = text).enqueue(object : Callback<GetResponse<QuestionResponse>>{
             override fun onResponse(call: Call<GetResponse<QuestionResponse>>, response: Response<GetResponse<QuestionResponse>>) {
                 if(response.body()!!.status == 200){
+                    onChangeListEvent.call()
                     questionList = response.body()!!.result
                 }
             }
