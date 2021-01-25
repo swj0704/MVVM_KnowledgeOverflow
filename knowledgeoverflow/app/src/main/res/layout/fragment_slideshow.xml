@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         tools:context=".view.fragment.SlideshowFragment">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/askList"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -23,6 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/themeSpinner"
+            tools:listitem="@layout/item_question"
             android:background="@drawable/back_question_answer"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -31,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:onClick="@={() -> viewModel.goWriteQuestion()}"
+            android:onClick="@{() -> viewModel.goWriteQuestion()}"
             android:clickable="true"
             android:src="@drawable/ic_baseline_edit_24"
             app:layout_constraintBottom_toBottomOf="parent"
