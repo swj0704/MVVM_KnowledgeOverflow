@@ -1,6 +1,10 @@
 package com.example.knowledgeoverflow.viewmodel.fragment
 
+import android.R
 import android.content.Context
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,13 +18,15 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SlideshowViewModel(private val service: GetAPI, context: Context) : BaseViewModel() {
-    val mContext = context
+    private val mContext = context
 
     val goWriteQuestionEvent = SingleLiveEvent<Unit>()
     val onErrorEvent = SingleLiveEvent<Unit>()
 
     var questionList = ArrayList<QuestionResponse>()
     val onChangeListEvent = SingleLiveEvent<Unit>()
+
+    var item = MutableLiveData<String>()
 
     init {
         getList("상식")
@@ -41,6 +47,7 @@ class SlideshowViewModel(private val service: GetAPI, context: Context) : BaseVi
 
         })
     }
+
     fun getList(theme: String?, text : String?){
         service.getQuestion(theme = theme, title = text).enqueue(object : Callback<GetResponse<QuestionResponse>>{
             override fun onResponse(call: Call<GetResponse<QuestionResponse>>, response: Response<GetResponse<QuestionResponse>>) {

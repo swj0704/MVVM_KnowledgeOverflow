@@ -20,30 +20,8 @@ class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewMo
     override val viewModel: SlideshowViewModel
         get() = getViewModel(SlideshowViewModel::class)
 
-    var item : String = ""
-
     override fun init() {
         setHasOptionsMenu(true)
-
-        val spinnerArray: MutableList<String> = ArrayList()
-        spinnerArray.add("상식")
-        spinnerArray.add("코딩")
-        spinnerArray.add("일상")
-        val adapter = ArrayAdapter<String>(viewModel.mContext, android.R.layout.simple_spinner_item, spinnerArray)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        binding.themeSpinner.adapter = adapter
-        binding.themeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                item = spinnerArray[position]
-                viewModel.getList(spinnerArray[position])
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                item = spinnerArray[0]
-                viewModel.getList("상식")
-            }
-        }
     }
 
     override fun observerViewModel() {
@@ -66,7 +44,7 @@ class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewMo
             override fun onQueryTextSubmit(s: String?): Boolean {
                 if (s != null) {
                     if(s.isNotEmpty()) {
-                        viewModel.getList(item, s)
+                        viewModel.getList(viewModel.item.value, s)
                     }
                 }
                 return false
