@@ -46,4 +46,5 @@ val myModule = module{
     viewModel { LoginViewModel(get<GetAPI>(), androidApplication()) }
     viewModel { SettingViewModel() }
     viewModel { SignUpViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
+    viewModel { SignUpViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
 }
