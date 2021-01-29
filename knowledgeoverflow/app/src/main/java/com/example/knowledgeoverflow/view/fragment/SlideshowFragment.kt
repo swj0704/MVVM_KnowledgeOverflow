@@ -1,5 +1,6 @@
 package com.example.knowledgeoverflow.view.fragment
 
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
@@ -10,7 +11,9 @@ import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseFragment
 import com.example.knowledgeoverflow.databinding.FragmentSlideshowBinding
 import com.example.knowledgeoverflow.view.activity.MainActivity
+import com.example.knowledgeoverflow.view.activity.WriteQuestionActivity
 import com.example.knowledgeoverflow.viewmodel.fragment.SlideshowViewModel
+import com.example.knowledgeoverflow.widget.extention.startActivityWithFinish
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewModel>() {
@@ -27,7 +30,7 @@ class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewMo
     override fun observerViewModel() {
         with(viewModel){
             goWriteQuestionEvent.observe(this@SlideshowFragment, {
-                // 질문 적는 곳으로 이동!
+                context?.let { it1 -> startActivityWithFinish(it1, WriteQuestionActivity::class.java) }
             })
             onChangeListEvent.observe(this@SlideshowFragment, {
                 // 리스트 변경
