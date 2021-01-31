@@ -1,6 +1,5 @@
 package com.example.knowledgeoverflow.viewmodel.fragment
 
-import android.R
 import android.content.Context
 import android.view.View
 import android.widget.AdapterView

@@ -14,13 +14,14 @@
         android:layout_height="wrap_content"
         android:background="@drawable/back_comment"
         android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="@{() -> viewModel.detail()}">
 
         <TextView
             android:id="@+id/item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@={viewModel.title}"
             tools:layout_editor_absoluteX="66dp"
             tools:layout_editor_absoluteY="43dp" />
 
@@ -29,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="TextView"
+            android:text="@={viewModel.theme}"
             android:textSize="18dp"
             tools:layout_editor_absoluteX="188dp"
             tools:layout_editor_absoluteY="228dp" />

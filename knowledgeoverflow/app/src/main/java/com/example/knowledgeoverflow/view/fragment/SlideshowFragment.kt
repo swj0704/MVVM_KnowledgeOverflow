@@ -14,6 +14,7 @@ import com.example.knowledgeoverflow.view.activity.MainActivity
 import com.example.knowledgeoverflow.view.activity.WriteQuestionActivity
 import com.example.knowledgeoverflow.viewmodel.fragment.SlideshowViewModel
 import com.example.knowledgeoverflow.widget.extention.startActivityWithFinish
+import com.example.knowledgeoverflow.widget.recyclerview.adapter.QuestionAdapter
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewModel>() {
@@ -23,8 +24,13 @@ class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewMo
     override val viewModel: SlideshowViewModel
         get() = getViewModel(SlideshowViewModel::class)
 
+    lateinit var adapter : QuestionAdapter
+
     override fun init() {
         setHasOptionsMenu(true)
+        adapter = QuestionAdapter(viewModel.questionList)
+
+        binding.askList.adapter = adapter
     }
 
     override fun observerViewModel() {
@@ -33,7 +39,7 @@ class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewMo
                 context?.let { it1 -> startActivityWithFinish(it1, WriteQuestionActivity::class.java) }
             })
             onChangeListEvent.observe(this@SlideshowFragment, {
-                // 리스트 변경
+                adapter.notifyDataSetChanged()
             })
         }
     }
