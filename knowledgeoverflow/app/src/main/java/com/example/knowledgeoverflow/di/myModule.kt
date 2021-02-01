@@ -2,13 +2,11 @@ package com.example.knowledgeoverflow.di
 
 import android.content.Context
 import com.example.knowledgeoverflow.network.api.*
-import com.example.knowledgeoverflow.viewmodel.activity.LoginViewModel
-import com.example.knowledgeoverflow.viewmodel.activity.MainViewModel
-import com.example.knowledgeoverflow.viewmodel.activity.SignUpViewModel
-import com.example.knowledgeoverflow.viewmodel.activity.SplashViewModel
+import com.example.knowledgeoverflow.viewmodel.activity.*
 import com.example.knowledgeoverflow.viewmodel.fragment.HomeViewModel
 import com.example.knowledgeoverflow.viewmodel.fragment.SettingViewModel
 import com.example.knowledgeoverflow.viewmodel.fragment.SlideshowViewModel
+import com.example.knowledgeoverflow.widget.recyclerview.viewmodel.QuestionItemViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -18,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val myModule = module{
 
     val service: Retrofit = Retrofit.Builder()
-        .baseUrl("https://e66c577c7f3c.ngrok.io/")
+        .baseUrl("https://61c403e3f2a9.ngrok.io/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -46,5 +44,6 @@ val myModule = module{
     viewModel { LoginViewModel(get<GetAPI>(), androidApplication()) }
     viewModel { SettingViewModel() }
     viewModel { SignUpViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
-    viewModel { SignUpViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
+    viewModel { WriteQuestionViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
+    viewModel { QuestionItemViewModel() }
 }

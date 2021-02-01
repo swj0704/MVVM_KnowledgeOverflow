@@ -6,6 +6,7 @@ import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseActivity
 import com.example.knowledgeoverflow.databinding.ActivitySplashBinding
 import com.example.knowledgeoverflow.viewmodel.activity.SplashViewModel
+import com.example.knowledgeoverflow.widget.extention.startActivityWithFinish
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
@@ -25,13 +26,13 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
         with(viewModel){
             onSuccessEvent.observe(this@SplashActivity, {
                 runnable = Runnable {
-                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    startActivityWithFinish(this@SplashActivity, MainActivity::class.java)
                 }
                 handler.postDelayed(runnable, 2000)
             })
             onFailEvent.observe(this@SplashActivity, {
                 runnable = Runnable {
-                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    startActivityWithFinish(this@SplashActivity, LoginActivity::class.java)
                 }
                 handler.postDelayed(runnable, 2000)
             })

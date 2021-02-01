@@ -1,20 +1,15 @@
 package com.example.knowledgeoverflow.view.fragment
 
-import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.SearchView
 import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.base.BaseFragment
 import com.example.knowledgeoverflow.databinding.FragmentSlideshowBinding
-import com.example.knowledgeoverflow.view.activity.MainActivity
 import com.example.knowledgeoverflow.view.activity.WriteQuestionActivity
 import com.example.knowledgeoverflow.viewmodel.fragment.SlideshowViewModel
-import com.example.knowledgeoverflow.widget.extention.startActivityWithFinish
-import com.example.knowledgeoverflow.widget.recyclerview.adapter.QuestionAdapter
+import com.example.knowledgeoverflow.widget.extention.startActivity
+import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewModel>() {
@@ -24,22 +19,14 @@ class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewMo
     override val viewModel: SlideshowViewModel
         get() = getViewModel(SlideshowViewModel::class)
 
-    lateinit var adapter : QuestionAdapter
-
     override fun init() {
         setHasOptionsMenu(true)
-        adapter = QuestionAdapter(viewModel.questionList)
-
-        binding.askList.adapter = adapter
     }
 
     override fun observerViewModel() {
         with(viewModel){
             goWriteQuestionEvent.observe(this@SlideshowFragment, {
-                context?.let { it1 -> startActivityWithFinish(it1, WriteQuestionActivity::class.java) }
-            })
-            onChangeListEvent.observe(this@SlideshowFragment, {
-                adapter.notifyDataSetChanged()
+                context?.let { it1 -> startActivity(it1, WriteQuestionActivity::class.java) }
             })
         }
     }
@@ -53,7 +40,7 @@ class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewMo
             override fun onQueryTextSubmit(s: String?): Boolean {
                 if (s != null) {
                     if(s.isNotEmpty()) {
-                        viewModel.getList(viewModel.item.value, s)
+                        viewModel.getList(viewModel.item, s)
                     }
                 }
                 return false

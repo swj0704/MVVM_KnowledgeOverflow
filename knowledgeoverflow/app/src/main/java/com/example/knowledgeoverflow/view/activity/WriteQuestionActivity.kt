@@ -15,11 +15,9 @@ class WriteQuestionActivity : BaseActivity<WriteQuestionViewModel, ActivityWrite
         get() = getViewModel(WriteQuestionViewModel::class)
 
     override fun init() {
-        TODO("Not yet implemented")
     }
 
     override fun observerViewModel() {
-        TODO("Not yet implemented")
     }
 
 
