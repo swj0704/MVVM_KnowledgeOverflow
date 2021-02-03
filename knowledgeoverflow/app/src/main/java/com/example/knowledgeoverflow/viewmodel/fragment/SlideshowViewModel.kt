@@ -22,12 +22,12 @@ class SlideshowViewModel(private val service: GetAPI, context: Context) : BaseVi
 
     var questionList = ArrayList<QuestionResponse>()
 
-    lateinit var adapter : QuestionAdapter
+    var adapter = QuestionAdapter(mContext)
 
     var item = "상식"
 
     init {
-        getList("상식")
+        setIsLoadingTrue()
     }
 
 
@@ -36,19 +36,29 @@ class SlideshowViewModel(private val service: GetAPI, context: Context) : BaseVi
         getList(item)
     }
 
-    private fun getList(theme: String?){
+    fun setList(){
+        adapter.setList(questionList)
+        adapter.notifyDataSetChanged()
+        setIsLoadingFalse()
+    }
+
+    fun getList(theme: String?){
+        setIsLoadingTrue()
         service.getQuestion(theme = theme).enqueue(object : Callback<GetResponse<QuestionResponse>> {
             override fun onResponse(call: Call<GetResponse<QuestionResponse>>, response: Response<GetResponse<QuestionResponse>>) {
                 if (response.body()!!.status == 200) {
-                    questionList = response.body()!!.result
+                    questionList.clear()
+                    for(item in response.body()!!.result){
+                        questionList.add(item)
+                    }
                     Log.d("ITEM", response.body()!!.toString())
-                    adapter = QuestionAdapter(mContext)
-                    adapter.setList(questionList)
+                    setList()
                 }
             }
 
             override fun onFailure(call: Call<GetResponse<QuestionResponse>>, t: Throwable) {
                 onErrorEvent.call()
+                setIsLoadingFalse()
             }
 
         })
@@ -58,15 +68,17 @@ class SlideshowViewModel(private val service: GetAPI, context: Context) : BaseVi
         service.getQuestion(theme = theme, title = text).enqueue(object : Callback<GetResponse<QuestionResponse>> {
             override fun onResponse(call: Call<GetResponse<QuestionResponse>>, response: Response<GetResponse<QuestionResponse>>) {
                 if (response.body()!!.status == 200) {
-                    questionList = response.body()!!.result
-                    Log.d("ITEM", response.body()!!.toString())
-                    adapter = QuestionAdapter(mContext)
-                    adapter.setList(questionList)
+                    questionList.clear()
+                    for(item in response.body()!!.result){
+                        questionList.add(item)
+                    }
+                    setList()
                 }
             }
 
             override fun onFailure(call: Call<GetResponse<QuestionResponse>>, t: Throwable) {
                 onErrorEvent.call()
+                setIsLoadingFalse()
             }
 
         })

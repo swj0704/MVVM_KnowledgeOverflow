@@ -21,6 +21,7 @@ class SlideshowFragment : BaseFragment<FragmentSlideshowBinding, SlideshowViewMo
 
     override fun init() {
         setHasOptionsMenu(true)
+        viewModel.getList("상식")
     }
 
     override fun observerViewModel() {

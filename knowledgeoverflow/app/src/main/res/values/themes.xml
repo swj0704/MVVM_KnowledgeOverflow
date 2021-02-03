@@ -22,4 +22,8 @@
         <item name="colorPrimaryDark">#000050</item>
         <item name="colorAccent">#0000ff</item>
     </style>
+
+    <style name="AppTheme.ContentLoadingProgressBar">
+        <item name="colorAccent">#000064</item>
+    </style>
 </resources>

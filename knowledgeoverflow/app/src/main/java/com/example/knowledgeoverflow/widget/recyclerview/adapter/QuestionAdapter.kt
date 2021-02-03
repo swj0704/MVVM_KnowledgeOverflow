@@ -1,6 +1,8 @@
 package com.example.knowledgeoverflow.widget.recyclerview.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.knowledgeoverflow.R
 import com.example.knowledgeoverflow.databinding.ItemQuestionBinding
 import com.example.knowledgeoverflow.network.DTO.QuestionResponse
+import com.example.knowledgeoverflow.view.activity.ShowQuestionActivity
 import com.example.knowledgeoverflow.widget.recyclerview.viewmodel.QuestionItemViewModel
 
 class QuestionAdapter(private val context: Context) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
@@ -21,14 +24,19 @@ class QuestionAdapter(private val context: Context) : RecyclerView.Adapter<Quest
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_question, parent, false))
+        val view = ViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_question, parent, false))
+        Log.d("Show View", "TEST3")
+        return view
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Log.d("Show View", "TEST2")
         holder.bind(questionItem[position])
     }
 
     override fun getItemCount(): Int {
+        Log.d("Show View", "TEST1")
+        Log.d("Show View", questionItem.size.toString())
         return questionItem.size
     }
 
@@ -37,10 +45,11 @@ class QuestionAdapter(private val context: Context) : RecyclerView.Adapter<Quest
 
         fun bind(item : QuestionResponse){
             viewModel.bind(item)
-
             binding.lifecycleOwner?.let {
+                Log.d("Show View", "TEST")
                 viewModel.onDetailEvent.observe(it, {
-                    // 세부사항으로 이동 context.startActivity(Intent(context))
+                    Log.d("Show View", "TEST")
+                    context.startActivity(Intent(context, ShowQuestionActivity::class.java))
                 })
             }
 

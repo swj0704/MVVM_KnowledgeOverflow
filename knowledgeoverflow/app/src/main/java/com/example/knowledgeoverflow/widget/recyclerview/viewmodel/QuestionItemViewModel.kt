@@ -1,5 +1,6 @@
 package com.example.knowledgeoverflow.widget.recyclerview.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.knowledgeoverflow.base.BaseViewModel
 import com.example.knowledgeoverflow.network.DTO.QuestionResponse
@@ -13,6 +14,7 @@ class QuestionItemViewModel : BaseViewModel() {
     val onDetailEvent = SingleLiveEvent<Unit>()
 
     fun bind(item : QuestionResponse){
+        Log.d("Show View", "TEST")
         title.value = item.title
         theme.value = item.theme
     }
