@@ -9,13 +9,13 @@
             type="com.example.knowledgeoverflow.widget.recyclerview.viewmodel.QuestionItemViewModel" />
     </data>
     
-    <LinearLayout 
+    <LinearLayout
+        android:id="@+id/detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/back_comment"
         android:padding="20dp"
-        android:orientation="vertical"
-        android:onClick="@{() -> viewModel.detail()}">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/item_title"

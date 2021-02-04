@@ -11,15 +11,9 @@ class QuestionItemViewModel : BaseViewModel() {
     val title = MutableLiveData<String>()
     val theme = MutableLiveData<String>()
 
-    val onDetailEvent = SingleLiveEvent<Unit>()
-
     fun bind(item : QuestionResponse){
         Log.d("Show View", "TEST")
         title.value = item.title
         theme.value = item.theme
-    }
-
-    fun detail(){
-        onDetailEvent.call()
     }
 }

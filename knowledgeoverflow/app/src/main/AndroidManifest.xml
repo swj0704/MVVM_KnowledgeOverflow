@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.WriteQuestionActivity"></activity>
+        <activity android:name=".view.activity.ShowQuestionActivity"></activity>
+        <activity android:name=".view.activity.WriteQuestionActivity" />
         <activity
             android:name=".view.activity.SignUpActivity"
             android:theme="@style/Material" />

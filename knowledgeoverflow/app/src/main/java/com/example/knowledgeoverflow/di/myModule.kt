@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val myModule = module{
 
     val service: Retrofit = Retrofit.Builder()
-        .baseUrl("https://61c403e3f2a9.ngrok.io/")
+        .baseUrl("https://66ab83d5ef45.ngrok.io/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -46,4 +46,5 @@ val myModule = module{
     viewModel { SignUpViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
     viewModel { WriteQuestionViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
     viewModel { QuestionItemViewModel() }
+    viewModel { ShowQuestionViewModel() }
 }
