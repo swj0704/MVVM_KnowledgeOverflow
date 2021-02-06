@@ -38,11 +38,11 @@ val myModule = module{
     }
 
     viewModel { SplashViewModel(androidApplication()) }
-    viewModel { HomeViewModel() }
+    viewModel { HomeViewModel(androidApplication()) }
     viewModel { MainViewModel(get()) }
     viewModel { SlideshowViewModel(get<GetAPI>(), androidApplication()) }
     viewModel { LoginViewModel(get<GetAPI>(), androidApplication()) }
-    viewModel { SettingViewModel() }
+    viewModel { SettingViewModel(androidApplication()) }
     viewModel { SignUpViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
     viewModel { WriteQuestionViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
     viewModel { QuestionItemViewModel() }
