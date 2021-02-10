@@ -25,17 +25,16 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
                 delete()
                 activity?.let { it1 -> startActivityWithFinish(it1, LoginActivity::class.java) }
             })
-            onQuestionEvent.observe(this@SettingFragment, {
+            onChangePasswordEvent.observe(this@SettingFragment, {
 
             })
-            onAnswerEvent.observe(this@SettingFragment, {
+            onChangeNicknameEvent.observe(this@SettingFragment, {
 
             })
-            onCommentEvent.observe(this@SettingFragment, {
+            onDeleteEvent.observe(this@SettingFragment, {
+                delete()
 
-            })
-            onChangeEvent.observe(this@SettingFragment, {
-
+                activity?.let { it1 -> startActivityWithFinish(it1, LoginActivity::class.java) }
             })
         }
     }

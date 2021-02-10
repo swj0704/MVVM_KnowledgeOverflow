@@ -13,14 +13,17 @@ class SettingViewModel(val context: Context) : BaseViewModel() {
     private val dataBase = DataBase.getInstance(context)!!.dao()
 
     val onLogoutEvent = SingleLiveEvent<Unit>()
-    val onCommentEvent = SingleLiveEvent<Unit>()
-    val onAnswerEvent = SingleLiveEvent<Unit>()
-    val onQuestionEvent = SingleLiveEvent<Unit>()
-    val onChangeEvent = SingleLiveEvent<Unit>()
+    val onChangePasswordEvent = SingleLiveEvent<Unit>()
+    val onChangeNicknameEvent = SingleLiveEvent<Unit>()
+    val onDeleteEvent = SingleLiveEvent<Unit>()
 
     init {
         nickname.value = dataBase.getAll()[0].name
         pwd.value = dataBase.getAll()[0].password
+    }
+
+    fun deleteUser(){
+        onDeleteEvent.call()
     }
 
     fun logout(){
@@ -31,19 +34,11 @@ class SettingViewModel(val context: Context) : BaseViewModel() {
         dataBase.delete()
     }
 
-    fun showComment(){
-        onCommentEvent.call()
-    }
-
-    fun showAnswer(){
-        onAnswerEvent.call()
-    }
-
-    fun showQuestion(){
-        onQuestionEvent.call()
+    fun changePassword(){
+        onChangePasswordEvent.call()
     }
 
     fun changeNickname(){
-        onChangeEvent.call()
+        onChangeNicknameEvent.call()
     }
 }
