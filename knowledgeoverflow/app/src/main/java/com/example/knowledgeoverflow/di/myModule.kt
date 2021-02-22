@@ -1,8 +1,8 @@
 package com.example.knowledgeoverflow.di
 
-import android.content.Context
 import com.example.knowledgeoverflow.network.api.*
 import com.example.knowledgeoverflow.viewmodel.activity.*
+import com.example.knowledgeoverflow.viewmodel.dialog.ShowMyQuestionViewModel
 import com.example.knowledgeoverflow.viewmodel.fragment.HomeViewModel
 import com.example.knowledgeoverflow.viewmodel.fragment.SettingViewModel
 import com.example.knowledgeoverflow.viewmodel.fragment.SlideshowViewModel
@@ -47,4 +47,5 @@ val myModule = module{
     viewModel { WriteQuestionViewModel(get<GetAPI>(), get<AddAPI>(), get<CheckAPI>()) }
     viewModel { QuestionItemViewModel() }
     viewModel { ShowQuestionViewModel() }
+    viewModel { ShowMyQuestionViewModel() }
 }
